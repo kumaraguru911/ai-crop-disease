@@ -1,0 +1,454 @@
+{
+  "Apple___Apple_scab": {
+    "crop": "Apple",
+    "disease": "Apple scab",
+    "description": "A fungal disease of apple that commonly affects leaves and fruit.",
+    "symptoms": [
+      "Olive-green to brown spots on leaves",
+      "Spots may become darker as they develop",
+      "Affected leaves may yellow and fall prematurely",
+      "Dark or corky lesions may develop on fruit"
+    ],
+    "management": [
+      "Remove and manage infected fallen leaves",
+      "Maintain good orchard sanitation",
+      "Improve air circulation through appropriate pruning",
+      "Monitor leaves and fruit regularly",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Apple___Black_rot": {
+    "crop": "Apple",
+    "disease": "Black rot",
+    "description": "A fungal disease that can affect apple leaves, fruit, and branches.",
+    "symptoms": [
+      "Round leaf spots with darker borders",
+      "Brown or dark fruit lesions",
+      "Concentric rings may develop in fruit lesions",
+      "Fruit may become mummified",
+      "Dark cankers may develop on branches"
+    ],
+    "management": [
+      "Remove mummified fruit and infected plant material",
+      "Maintain good orchard sanitation",
+      "Prune affected branches where appropriate",
+      "Remove diseased debris from the growing area",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Apple___Cedar_apple_rust": {
+    "crop": "Apple",
+    "disease": "Cedar apple rust",
+    "description": "A fungal rust disease that affects apple leaves and sometimes fruit and requires a compatible cedar or juniper host to complete its life cycle.",
+    "symptoms": [
+      "Yellow spots developing on leaves",
+      "Orange to orange-red spots",
+      "Dark structures may develop within leaf spots",
+      "Raised fungal structures may appear on the underside of leaves",
+      "Fruit may occasionally develop abnormal lesions"
+    ],
+    "management": [
+      "Monitor apple trees and nearby cedar or juniper hosts",
+      "Remove infected plant material where practical",
+      "Improve orchard sanitation",
+      "Choose resistant varieties where available",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Apple___healthy": {
+    "crop": "Apple",
+    "disease": "Healthy",
+    "description": "The apple leaf does not show the disease patterns represented by the supported disease classes.",
+    "symptoms": [],
+    "management": [
+      "Continue regular crop monitoring",
+      "Maintain good orchard sanitation",
+      "Provide appropriate water and nutrition",
+      "Monitor leaves and fruit for changes"
+    ]
+  },
+
+  "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": {
+    "crop": "Corn",
+    "disease": "Cercospora leaf spot / Gray leaf spot",
+    "description": "A fungal disease of corn that primarily affects leaves and can reduce photosynthetic capacity.",
+    "symptoms": [
+      "Small lesions that develop into elongated rectangular spots",
+      "Gray to tan lesions between leaf veins",
+      "Lesions may become more numerous as the disease progresses",
+      "Severe infection can cause extensive leaf damage"
+    ],
+    "management": [
+      "Monitor fields regularly",
+      "Maintain good crop residue management",
+      "Use appropriate crop rotation practices where suitable",
+      "Choose resistant or tolerant hybrids where available",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Corn_(maize)___Common_rust_": {
+    "crop": "Corn",
+    "disease": "Common rust",
+    "description": "A fungal disease of corn that produces characteristic rust-colored structures on leaves.",
+    "symptoms": [
+      "Small elongated rust-colored pustules on leaves",
+      "Pustules may occur on both sides of leaves",
+      "Pustules can release powdery spores",
+      "Severe infection may reduce healthy leaf area"
+    ],
+    "management": [
+      "Monitor plants regularly",
+      "Use resistant hybrids where available",
+      "Maintain appropriate crop management",
+      "Avoid unnecessary plant stress",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Corn_(maize)___Northern_Leaf_Blight": {
+    "crop": "Corn",
+    "disease": "Northern Leaf Blight",
+    "description": "A fungal disease of corn that causes characteristic elongated lesions on leaves.",
+    "symptoms": [
+      "Long gray-green or tan lesions on leaves",
+      "Lesions may become cigar-shaped",
+      "Lesions can expand and merge",
+      "Severe disease can result in substantial leaf damage"
+    ],
+    "management": [
+      "Monitor crops regularly",
+      "Use resistant hybrids where available",
+      "Maintain appropriate crop rotation",
+      "Manage infected crop residue appropriately",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Corn_(maize)___healthy": {
+    "crop": "Corn",
+    "disease": "Healthy",
+    "description": "The corn leaf does not show the disease patterns represented by the supported disease classes.",
+    "symptoms": [],
+    "management": [
+      "Continue regular crop monitoring",
+      "Maintain appropriate irrigation and nutrition",
+      "Manage weeds and crop residue appropriately",
+      "Monitor leaves for changes"
+    ]
+  },
+
+  "Grape___Black_rot": {
+    "crop": "Grape",
+    "disease": "Black rot",
+    "description": "A fungal disease of grape that can affect leaves, shoots, and fruit.",
+    "symptoms": [
+      "Small yellowish or tan leaf spots",
+      "Spots may develop dark margins",
+      "Black fruiting structures may develop within lesions",
+      "Infected berries may turn brown and then black",
+      "Affected berries may become shriveled or mummified"
+    ],
+    "management": [
+      "Remove infected fruit and plant debris",
+      "Maintain good vineyard sanitation",
+      "Improve canopy air circulation",
+      "Remove severely affected plant material where appropriate",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Grape___Esca_(Black_Measles)": {
+    "crop": "Grape",
+    "disease": "Esca (Black Measles)",
+    "description": "A grape disease complex associated with fungal infection that can affect leaves, shoots, and fruit.",
+    "symptoms": [
+      "Interveinal leaf discoloration",
+      "Leaf areas may develop yellow or brown patterns",
+      "Small dark spots may appear on berries",
+      "Fruit may develop a measles-like appearance",
+      "Affected vines may show decline"
+    ],
+    "management": [
+      "Monitor vines for recurring symptoms",
+      "Remove severely affected plant material where appropriate",
+      "Maintain good vineyard sanitation",
+      "Manage pruning wounds carefully",
+      "Follow locally appropriate vineyard disease-management practices"
+    ]
+  },
+
+  "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": {
+    "crop": "Grape",
+    "disease": "Leaf blight (Isariopsis Leaf Spot)",
+    "description": "A fungal leaf disease of grape that causes spots and can lead to leaf damage.",
+    "symptoms": [
+      "Dark spots on grape leaves",
+      "Spots may enlarge over time",
+      "Affected tissue may become brown or necrotic",
+      "Severe infection can result in premature leaf loss"
+    ],
+    "management": [
+      "Remove severely affected leaves where practical",
+      "Maintain good vineyard sanitation",
+      "Improve canopy air circulation",
+      "Avoid prolonged leaf wetness where possible",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Grape___healthy": {
+    "crop": "Grape",
+    "disease": "Healthy",
+    "description": "The grape leaf does not show the disease patterns represented by the supported disease classes.",
+    "symptoms": [],
+    "management": [
+      "Continue regular vineyard monitoring",
+      "Maintain good canopy management",
+      "Provide appropriate water and nutrition",
+      "Monitor leaves and fruit for changes"
+    ]
+  },
+
+  "Potato___Early_blight": {
+    "crop": "Potato",
+    "disease": "Early blight",
+    "description": "A fungal disease of potato that primarily affects foliage and can reduce plant vigor.",
+    "symptoms": [
+      "Dark lesions on leaves",
+      "Concentric ring patterns may appear within lesions",
+      "Yellowing around lesions",
+      "Premature leaf loss in severe cases"
+    ],
+    "management": [
+      "Remove severely affected plant material",
+      "Maintain good field sanitation",
+      "Avoid unnecessary leaf wetness",
+      "Provide adequate spacing and air circulation",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Potato___Late_blight": {
+    "crop": "Potato",
+    "disease": "Late blight",
+    "description": "A serious disease of potato that can rapidly damage leaves and other plant tissues under favorable environmental conditions.",
+    "symptoms": [
+      "Large irregular dark leaf lesions",
+      "Water-soaked appearance may occur under wet conditions",
+      "Lesions can rapidly expand",
+      "Severe infection can cause rapid plant decline"
+    ],
+    "management": [
+      "Monitor plants regularly",
+      "Remove severely infected material where practical",
+      "Maintain good field sanitation",
+      "Avoid prolonged leaf wetness where possible",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Potato___healthy": {
+    "crop": "Potato",
+    "disease": "Healthy",
+    "description": "The potato leaf does not show the disease patterns represented by the supported disease classes.",
+    "symptoms": [],
+    "management": [
+      "Continue regular crop monitoring",
+      "Maintain appropriate irrigation and nutrition",
+      "Keep the growing area free of diseased plant debris",
+      "Monitor leaves for changes"
+    ]
+  },
+
+  "Tomato___Bacterial_spot": {
+    "crop": "Tomato",
+    "disease": "Bacterial spot",
+    "description": "A bacterial disease that can affect tomato leaves, stems, and fruit.",
+    "symptoms": [
+      "Small dark spots on leaves",
+      "Spots may have yellow halos",
+      "Leaf tissue may become damaged as spots increase",
+      "Small dark lesions may develop on fruit"
+    ],
+    "management": [
+      "Remove severely affected plant material where practical",
+      "Avoid working with plants when foliage is wet",
+      "Maintain good field sanitation",
+      "Use clean planting material",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Tomato___Early_blight": {
+    "crop": "Tomato",
+    "disease": "Early blight",
+    "description": "A fungal disease that commonly affects tomato foliage and can cause progressive leaf damage.",
+    "symptoms": [
+      "Dark brown spots on older leaves",
+      "Concentric ring patterns may develop within spots",
+      "Yellowing around affected areas",
+      "Progressive leaf damage and defoliation"
+    ],
+    "management": [
+      "Remove severely affected plant material",
+      "Avoid prolonged leaf wetness",
+      "Maintain good spacing and air circulation",
+      "Keep the growing area free of infected plant debris",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Tomato___Late_blight": {
+    "crop": "Tomato",
+    "disease": "Late blight",
+    "description": "A serious disease that can rapidly damage tomato foliage and fruit under favorable conditions.",
+    "symptoms": [
+      "Dark irregular lesions on leaves",
+      "Water-soaked appearance may occur",
+      "Lesions can expand rapidly",
+      "Severe infection can cause extensive foliage damage",
+      "Fruit may develop dark lesions"
+    ],
+    "management": [
+      "Monitor plants frequently",
+      "Remove severely infected material where practical",
+      "Maintain good field sanitation",
+      "Avoid prolonged leaf wetness",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Tomato___Leaf_Mold": {
+    "crop": "Tomato",
+    "disease": "Leaf mold",
+    "description": "A fungal disease that primarily affects tomato leaves, especially under humid conditions.",
+    "symptoms": [
+      "Yellow spots on the upper surface of leaves",
+      "Olive-green to brown areas may develop",
+      "Velvety fungal growth may appear on the underside of leaves",
+      "Severe infection can cause leaf yellowing and drop"
+    ],
+    "management": [
+      "Improve air circulation",
+      "Reduce excessive humidity where possible",
+      "Avoid prolonged leaf wetness",
+      "Remove severely affected leaves where practical",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Tomato___Septoria_leaf_spot": {
+    "crop": "Tomato",
+    "disease": "Septoria leaf spot",
+    "description": "A fungal disease that commonly causes numerous small spots on tomato leaves.",
+    "symptoms": [
+      "Small circular spots on leaves",
+      "Spots may have dark margins",
+      "Light-colored centers may develop",
+      "Tiny dark structures may appear within spots",
+      "Severe infection can cause leaf drop"
+    ],
+    "management": [
+      "Remove severely affected leaves where practical",
+      "Maintain good sanitation",
+      "Avoid splashing water onto foliage",
+      "Improve air circulation",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Tomato___Spider_mites Two-spotted_spider_mite": {
+    "crop": "Tomato",
+    "disease": "Spider mites (Two-spotted spider mite)",
+    "description": "A pest problem caused by tiny spider mites that feed on plant tissue and can damage tomato leaves.",
+    "symptoms": [
+      "Fine pale stippling on leaves",
+      "Yellowing or bronzing of foliage",
+      "Leaves may become dry or damaged under severe infestation",
+      "Fine webbing may be visible in heavy infestations"
+    ],
+    "management": [
+      "Monitor the underside of leaves regularly",
+      "Remove heavily infested plant material where practical",
+      "Reduce plant stress and maintain appropriate growing conditions",
+      "Encourage natural predators where appropriate",
+      "Use suitable pest-control products according to their label when necessary"
+    ]
+  },
+
+  "Tomato___Target_Spot": {
+    "crop": "Tomato",
+    "disease": "Target spot",
+    "description": "A fungal disease that produces circular lesions on tomato leaves and can affect other plant parts.",
+    "symptoms": [
+      "Circular brown leaf spots",
+      "Concentric rings may create a target-like appearance",
+      "Spots may enlarge and merge",
+      "Severe infection can cause leaf loss"
+    ],
+    "management": [
+      "Remove severely affected plant material where practical",
+      "Maintain good field sanitation",
+      "Improve air circulation",
+      "Avoid prolonged leaf wetness",
+      "Use appropriate disease-control products according to their label when necessary"
+    ]
+  },
+
+  "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+    "crop": "Tomato",
+    "disease": "Tomato Yellow Leaf Curl Virus",
+    "description": "A viral disease of tomato that can cause characteristic leaf curling, yellowing, and reduced plant growth.",
+    "symptoms": [
+      "Upward curling of leaves",
+      "Yellowing of leaf margins or younger leaves",
+      "Reduced leaf size",
+      "Stunted plant growth",
+      "Reduced fruit production"
+    ],
+    "management": [
+      "Monitor plants regularly",
+      "Manage insect vectors such as whiteflies",
+      "Remove severely affected plants where appropriate",
+      "Control weeds that may harbor insect vectors",
+      "Use resistant varieties where available"
+    ]
+  },
+
+  "Tomato___Tomato_mosaic_virus": {
+    "crop": "Tomato",
+    "disease": "Tomato mosaic virus",
+    "description": "A viral disease that can cause mosaic patterns, leaf distortion, and reduced plant growth in tomato.",
+    "symptoms": [
+      "Light and dark green mosaic patterns on leaves",
+      "Leaf distortion",
+      "Reduced plant growth",
+      "Narrow or malformed leaves may occur",
+      "Fruit development may be affected"
+    ],
+    "management": [
+      "Remove severely affected plants where appropriate",
+      "Maintain good sanitation",
+      "Wash hands and tools after handling infected plants",
+      "Avoid spreading plant sap between plants",
+      "Use resistant varieties where available"
+    ]
+  },
+
+  "Tomato___healthy": {
+    "crop": "Tomato",
+    "disease": "Healthy",
+    "description": "The tomato leaf does not show the disease or pest patterns represented by the supported disease classes.",
+    "symptoms": [],
+    "management": [
+      "Continue regular crop monitoring",
+      "Maintain appropriate irrigation and nutrition",
+      "Maintain good field sanitation",
+      "Monitor leaves and fruit for changes"
+    ]
+  }
+}
