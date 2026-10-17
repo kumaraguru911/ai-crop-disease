@@ -657,4 +657,19 @@ class DiseaseInformationService {
 
     return disease;
   }
+
+  static DiseaseInformation getByCropAndDiseaseName({
+    required String crop,
+    required String diseaseName,
+  }) {
+    for (final disease in _diseases.values) {
+      if (disease.crop == crop && disease.diseaseName == diseaseName) {
+        return disease;
+      }
+    }
+
+    throw StateError(
+      'No disease information exists for "$diseaseName" on "$crop".',
+    );
+  }
 }

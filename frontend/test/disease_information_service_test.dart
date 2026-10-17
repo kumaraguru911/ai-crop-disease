@@ -121,5 +121,26 @@ void main() {
       expect(disease.diseaseName, 'Healthy Tomato');
       expect(disease.isHealthy, isTrue);
     });
+
+    test('finds disease details by crop and disease name', () {
+      final disease = DiseaseInformationService.getByCropAndDiseaseName(
+        crop: 'Apple',
+        diseaseName: 'Black Rot',
+      );
+
+      expect(disease.classIndex, 1);
+      expect(disease.symptoms, isNotEmpty);
+      expect(disease.treatment, isNotEmpty);
+    });
+
+    test('unknown crop and disease name throws StateError', () {
+      expect(
+        () => DiseaseInformationService.getByCropAndDiseaseName(
+          crop: 'Unknown',
+          diseaseName: 'Unknown',
+        ),
+        throwsStateError,
+      );
+    });
   });
 }

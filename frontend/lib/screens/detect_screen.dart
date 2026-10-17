@@ -163,7 +163,7 @@ class _DetectScreenState extends State<DetectScreen> {
         MaterialPageRoute(
           builder: (_) => DiseaseResultScreen(
             imageFile: File(selectedImage.path),
-            prediction: prediction,
+            confidence: prediction.confidence,
             disease: disease,
           ),
         ),

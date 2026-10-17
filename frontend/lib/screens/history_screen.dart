@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import '../services/disease_information_service.dart';
 import '../services/scan_history_service.dart';
+import 'disease_result_screen.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
@@ -72,6 +74,31 @@ class _HistoryScreenState extends State<HistoryScreen> {
     }
   }
 
+  void _openEntry(ScanHistoryEntry entry) {
+    try {
+      final disease = DiseaseInformationService.getByCropAndDiseaseName(
+        crop: entry.crop,
+        diseaseName: entry.diseaseName,
+      );
+
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => DiseaseResultScreen(
+            imageFile: File(entry.imagePath),
+            confidence: entry.confidence,
+            disease: disease,
+          ),
+        ),
+      );
+    } on StateError catch (error) {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          SnackBar(content: Text('Could not load scan details: $error')),
+        );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_loading) {
@@ -136,7 +163,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
           final entry = _entries[index - 1];
 
-          return _HistoryCard(entry: entry);
+          return _HistoryCard(entry: entry, onTap: () => _openEntry(entry));
         },
       ),
     );
@@ -144,9 +171,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
 }
 
 class _HistoryCard extends StatelessWidget {
-  const _HistoryCard({required this.entry});
+  const _HistoryCard({required this.entry, required this.onTap});
 
   final ScanHistoryEntry entry;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -155,62 +183,72 @@ class _HistoryCard extends StatelessWidget {
     final confidence = '${(entry.confidence * 100).toStringAsFixed(1)}%';
 
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Row(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.file(
-                File(entry.imagePath),
-                width: 76,
-                height: 76,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    width: 76,
-                    height: 76,
-                    color: colors.surfaceContainerHighest,
-                    child: const Icon(Icons.image_not_supported_outlined),
-                  );
-                },
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.file(
+                  File(entry.imagePath),
+                  width: 76,
+                  height: 76,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      width: 76,
+                      height: 76,
+                      color: colors.surfaceContainerHighest,
+                      child: const Icon(Icons.image_not_supported_outlined),
+                    );
+                  },
+                ),
               ),
-            ),
 
-            const SizedBox(width: 14),
+              const SizedBox(width: 14),
 
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      entry.diseaseName,
+                      style: Theme.of(context).textTheme.titleMedium
+                          ?.copyWith(fontWeight: FontWeight.w700),
+                    ),
+
+                    const SizedBox(height: 4),
+
+                    Text(entry.crop),
+
+                    const SizedBox(height: 5),
+
+                    Text(
+                      '${_formatDate(entry.createdAt)}'
+                      '  •  $confidence',
+                      style: Theme.of(context).textTheme.bodySmall
+                          ?.copyWith(color: colors.onSurfaceVariant),
+                    ),
+                  ],
+                ),
+              ),
+
+              Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    entry.diseaseName,
-                    style: Theme.of(context).textTheme.titleMedium
-                        ?.copyWith(fontWeight: FontWeight.w700),
+                  Icon(
+                    entry.isHealthy
+                        ? Icons.check_circle_outline
+                        : Icons.warning_amber_outlined,
                   ),
-
-                  const SizedBox(height: 4),
-
-                  Text(entry.crop),
-
-                  const SizedBox(height: 5),
-
-                  Text(
-                    '${_formatDate(entry.createdAt)}'
-                    '  •  $confidence',
-                    style: Theme.of(context).textTheme.bodySmall
-                        ?.copyWith(color: colors.onSurfaceVariant),
-                  ),
+                  const Icon(Icons.chevron_right),
                 ],
               ),
-            ),
-
-            Icon(
-              entry.isHealthy
-                  ? Icons.check_circle_outline
-                  : Icons.warning_amber_outlined,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

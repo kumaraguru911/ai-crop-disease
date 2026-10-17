@@ -12,7 +12,7 @@ CropCare is a Flutter application for identifying possible diseases from a plant
 - Classify a leaf image on device with an EfficientNetV2-S ONNX model.
 - View the predicted crop, disease, confidence, symptoms, and care guidance.
 - Browse disease information for supported classes.
-- Review recent scans; scan records and copied images are stored locally on the device (up to 50 entries).
+- Review recent scans; tap a saved scan to reopen its diagnosis, symptoms, and care guidance. Scan records and copied images are stored locally on the device (up to 50 entries).
 - Ask common crop-care questions in the assistant screen, which currently uses a small set of built-in responses.
 
 ## Supported crop classes
