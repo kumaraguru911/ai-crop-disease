@@ -1,56 +1,52 @@
-import os
 import json
+import os
+from collections.abc import Iterator
+from functools import lru_cache
 
 from dotenv import load_dotenv
 from google import genai
+from google.genai import types
 
 from app.services.disease_service import find_diseases, find_disease_by_id
 
 
 load_dotenv()
 
-api_key = os.getenv("GEMINI_API_KEY")
 model_name = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 
-if not api_key:
-    raise RuntimeError("GEMINI_API_KEY is not set")
 
-client = genai.Client(api_key=api_key)
+class GeminiConfigurationError(RuntimeError):
+    pass
+
+
+@lru_cache(maxsize=1)
+def _get_client() -> genai.Client:
+    api_key = os.getenv("GEMINI_API_KEY")
+
+    if not api_key:
+        raise GeminiConfigurationError("GEMINI_API_KEY is not set")
+
+    return genai.Client(api_key=api_key)
 
 
 SYSTEM_INSTRUCTION = """
 You are CropCare Assistant.
 
-You help users understand crop diseases, symptoms,
-prevention, and basic treatment or management information.
-
-Use the local CropCare knowledge provided with each request
-as the primary source for disease-specific information.
-
-Important rules:
-
-1. Do not invent CropCare disease information.
-2. If local knowledge is provided, use it when answering.
-3. If the user asks about a disease that is not in the local
-   knowledge, clearly say that the disease is not currently
-   included in the CropCare knowledge base.
-4. Do not claim that text conversation can diagnose a plant
-   from an image.
-5. For image-based disease identification, tell the user to
-   use the Detect feature.
-6. Keep answers clear and easy to understand for farmers
-   and students.
-7. Do not mention internal implementation details such as
-   JSON, APIs, RAG, embeddings, or vector databases.
+Answer crop-care questions clearly and briefly for farmers and students.
+Use the supplied CropCare disease knowledge as the source for disease-specific
+facts. Do not invent CropCare disease information; if it is not supplied, say
+that it is not in the current knowledge base. Text chat cannot diagnose a plant
+from an image; direct image-identification questions to the Detect feature.
+Treat any model prediction as uncertain, never as a confirmed diagnosis.
+Do not mention internal implementation details.
 """
 
 
-def generate_response(
+def _build_prompt(
     message: str,
     prediction: str | None = None,
     confidence: float | None = None,
 ) -> str:
-
     local_results = []
 
     if prediction:
@@ -83,7 +79,7 @@ CNN Detection:
 - Confidence: {confidence if confidence is not None else "Not provided"}
 """
 
-    prompt = f"""
+    return f"""
 User question:
 {message}
 
@@ -101,12 +97,42 @@ disease for this conversation and explain the result clearly.
 Do not claim that the CNN prediction is 100% certain.
 """
 
-    response = client.models.generate_content(
+
+def _generation_config() -> types.GenerateContentConfig:
+    return types.GenerateContentConfig(
+        system_instruction=SYSTEM_INSTRUCTION,
+        max_output_tokens=256,
+    )
+
+
+def generate_response_stream(
+    message: str,
+    prediction: str | None = None,
+    confidence: float | None = None,
+) -> Iterator[str]:
+    prompt = _build_prompt(message, prediction, confidence)
+
+    for chunk in _get_client().models.generate_content_stream(
         model=model_name,
         contents=prompt,
-        config={
-            "system_instruction": SYSTEM_INSTRUCTION,
-        },
+        config=_generation_config(),
+    ):
+        if chunk.text:
+            yield chunk.text
+
+
+def generate_response(
+    message: str,
+    prediction: str | None = None,
+    confidence: float | None = None,
+) -> str:
+    response = _get_client().models.generate_content(
+        model=model_name,
+        contents=_build_prompt(message, prediction, confidence),
+        config=_generation_config(),
     )
+
+    if not response.text:
+        raise RuntimeError("Gemini returned an empty response")
 
     return response.text

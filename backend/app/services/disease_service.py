@@ -1,4 +1,5 @@
 import json
+from functools import lru_cache
 from pathlib import Path
 
 
@@ -9,6 +10,7 @@ DATA_FILE = (
 )
 
 
+@lru_cache(maxsize=1)
 def load_diseases() -> dict:
     with open(DATA_FILE, "r", encoding="utf-8") as file:
         return json.load(file)
@@ -81,4 +83,3 @@ def find_diseases(query: str) -> list[dict]:
             )
 
     return matches
-

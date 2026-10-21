@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../services/chat_service.dart';
+import '../services/local_cropcare_assistant_service.dart';
 
 class ChatMessage {
   const ChatMessage({required this.text, required this.isUser});
@@ -11,10 +11,9 @@ class ChatMessage {
 }
 
 class ChatbotScreen extends StatefulWidget {
-  const ChatbotScreen({super.key, this.prediction, this.confidence});
+  const ChatbotScreen({super.key, this.prediction});
 
   final String? prediction;
-  final double? confidence;
 
   @override
   State<ChatbotScreen> createState() => _ChatbotScreenState();
@@ -23,20 +22,21 @@ class ChatbotScreen extends StatefulWidget {
 class _ChatbotScreenState extends State<ChatbotScreen> {
   final TextEditingController _messageController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
+  static const _assistant = LocalCropCareAssistantService();
 
-  final List<ChatMessage> _messages = [
-    const ChatMessage(
-      text: 'Hello! I am the CropCare Assistant. I can help you understand crop diseases, symptoms, and basic treatment information.',
-      isUser: false,
-    ),
-    const ChatMessage(
-      text: 'I am currently a demo assistant. AI-powered conversations will be added in a future version.',
+  late final List<ChatMessage> _messages = [
+    ChatMessage(
+      text: widget.prediction == null
+          ? 'Hello! I am the offline CropCare Assistant. I can look up supported '
+                'crop diseases, symptoms, and care guidance without an internet connection.'
+          : 'The last scan suggested a possible ${widget.prediction}. It may '
+                'be wrong. Ask me about its symptoms or care guidance.',
       isUser: false,
     ),
   ];
 
   final List<String> _suggestedQuestions = const [
-    'What is early blight?',
+    'What are tomato early blight symptoms?',
     'How can I prevent crop diseases?',
     'What are common tomato diseases?',
   ];
@@ -48,7 +48,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     super.dispose();
   }
 
-  Future<void> _sendMessage([String? suggestedMessage]) async {
+  void _sendMessage([String? suggestedMessage]) {
     final message = suggestedMessage?.trim() ?? _messageController.text.trim();
 
     if (message.isEmpty) {
@@ -56,38 +56,15 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     }
 
     _messageController.clear();
+    final response = _assistant.answerQuestion(
+      message,
+      prediction: widget.prediction,
+    );
 
     setState(() {
       _messages.add(ChatMessage(text: message, isUser: true));
+      _messages.add(ChatMessage(text: response, isUser: false));
     });
-
-    _scrollToBottom();
-
-    try {
-      final response = await ChatService.sendMessage(
-        message: message,
-        prediction: widget.prediction,
-        confidence: widget.confidence,
-      );
-
-      if (!mounted) {
-        return;
-      }
-
-      setState(() {
-        _messages.add(ChatMessage(text: response, isUser: false));
-      });
-    } catch (error) {
-      if (!mounted) {
-        return;
-      }
-
-      setState(() {
-        _messages.add(
-          ChatMessage(text: 'chat api error: $error', isUser: false),
-        );
-      });
-    }
 
     _scrollToBottom();
   }

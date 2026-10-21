@@ -2,7 +2,7 @@
 
 **A plant health assistant that brings crop disease image classification and practical crop-care guidance into one app.**
 
-CropCare is a Flutter application for identifying possible diseases from a plant-leaf photo. Inference runs on the device with an ONNX model, so the image classification flow does not require an application server. The app also includes a disease reference library, locally stored scan history, and a CropCare assistant screen.
+CropCare is a Flutter application for identifying possible diseases from a plant-leaf photo. Image classification and the retrieval-based CropCare assistant both run on the device. The assistant finds relevant entries in the bundled disease guide and answers from that content without an application server or internet connection.
 
 > **Please use results as a screening aid.** Predictions can be wrong, especially on photos or crops unlike the model's training data. Confirm important decisions with a qualified agricultural adviser.
 
@@ -13,7 +13,7 @@ CropCare is a Flutter application for identifying possible diseases from a plant
 - View the predicted crop, disease, confidence, symptoms, and care guidance.
 - Browse disease information for supported classes.
 - Review recent scans; tap a saved scan to reopen its diagnosis, symptoms, and care guidance. Scan records and copied images are stored locally on the device (up to 50 entries).
-- Ask common crop-care questions in the assistant screen, which currently uses a small set of built-in responses.
+- Ask crop-care questions in the assistant screen. The offline assistant retrieves symptoms and care guidance from the local disease library; it does not send messages to a cloud AI service.
 
 ## Supported crop classes
 
@@ -34,6 +34,7 @@ The model returns a best match among these classes. It is not a general plant id
 ```text
 .
 ├── README.md                 # Project overview and setup
+├── backend/                  # Optional FastAPI/Gemini API; not used by mobile chat
 ├── frontend/                 # Flutter app and platform projects
 │   ├── lib/                  # Screens, services, models, and theme
 │   └── assets/models/        # ONNX model bundled with the app
@@ -51,13 +52,17 @@ The model returns a best match among these classes. It is not a general plant id
 
 ## Run the app
 
+The assistant uses the same disease facts shown in the in-app library and works offline. No backend, Gemini API key, port forwarding, or `CHAT_API_BASE_URL` is needed to use the mobile app.
+
 From the repository root:
 
-```bash
+```powershell
 cd frontend
 flutter pub get
 flutter run
 ```
+
+The optional `backend/` service is separate from mobile chat and is not required to run the app.
 
 To list available devices before launching:
 
@@ -107,7 +112,7 @@ flutter analyze
 
 ## Privacy
 
-Image inference is performed locally. Scan history stores scan details and copied images in the app's local storage. The current assistant uses built-in responses and does not provide AI-powered conversations. Removing the app or clearing its history removes these local records according to the platform's storage behavior.
+Image inference and assistant retrieval are performed locally. Chat questions are matched against the bundled disease guide and are not sent to a backend. Scan history stores scan details and copied images in the app's local storage. Chat messages remain in the active screen session and are not added to scan history. Removing the app or clearing its history removes the locally stored scan records and images according to the platform's storage behavior.
 
 ## License
 

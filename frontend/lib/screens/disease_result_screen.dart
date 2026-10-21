@@ -145,10 +145,8 @@ class DiseaseResultScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (_) => ChatbotScreen(
-                            prediction: disease.className,
-                            confidence: confidence,
-                          ),
+                          builder: (_) =>
+                              ChatbotScreen(prediction: disease.className),
                         ),
                       );
                     },
